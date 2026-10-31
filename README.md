@@ -67,8 +67,8 @@ source_chat ──新消息──> [userbot 监听] ──过滤──> [相册�
 ### 方式一：Docker（推荐）
 
 ```bash
-git clone https://github.com/<kekeguai>/tg-relay.git
-cd tg-relay
+git clone https://github.com/kekeguai/tg_relay.git
+cd tg_relay
 
 bash install.sh                                        # ① 交互式生成 config.json + .env
 docker compose run --rm relay python -m relay.login    # ② 首次登录主账号（仅一次，会话持久化）
@@ -79,8 +79,8 @@ docker compose logs -f                                 #    查看日志
 ### 方式二：本地运行（Python 3.11+）
 
 ```bash
-git clone https://github.com/<kekeguai>/tg-relay.git
-cd tg-relay
+git clone https://github.com/kekeguai/tg_relay.git
+cd tg_relay
 
 pip install -r requirements.txt
 bash install.sh                 # ① 交互式配置（Linux / macOS / WSL / Git Bash）
@@ -157,7 +157,7 @@ DEST_CHANNELS=@test_channel python3 -m relay.config   # 不启动客户端，仅
 ## 📁 项目结构
 
 ```
-tg-relay/
+tg_relay/
 ├── install.sh               # 交互式安装脚本（生成 config.json 与 .env，遮挡摘要）
 ├── verify.py                # 自检脚本（仅标准库，无需 Telethon）
 ├── requirements.txt         # 唯一第三方依赖：telethon
