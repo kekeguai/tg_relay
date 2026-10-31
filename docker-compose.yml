@@ -1,0 +1,21 @@
+# Telegram 消息中继 · Docker 部署
+#
+# 用法:
+#   bash install.sh                                        # 生成 config.json 与 .env
+#   docker compose run --rm relay python -m relay.login    # 首次登录主账号（会话持久化到 ./data）
+#   docker compose up -d                                   # 启动
+#   docker compose logs -f                                 # 查看日志
+#   docker compose down                                    # 停止
+
+services:
+  relay:
+    build: .
+    image: tg-relay:latest
+    container_name: tg-relay
+    env_file: .env                          # 敏感参数注入运行环境，优先级高于 config.json 同名字段
+    volumes:
+      - ./config.json:/app/config.json:ro   # 主配置（持久化）
+      - ./data:/app/data                    # Telethon 会话 / 死信队列 / 日志 —— 重启不丢失登录态
+    stdin_open: true                        # 供交互式登录（docker compose run）使用
+    tty: true
+    restart: unless-stopped

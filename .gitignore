@@ -1,0 +1,9 @@
+# 敏感与运行时数据（切勿提交）
+.env
+config.json
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
